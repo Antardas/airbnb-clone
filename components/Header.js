@@ -17,7 +17,7 @@ function Header() {
   }
   const resetInput = () => {
     setSearchInput('');
-    
+
   }
   const selectionRange = {
     startDate: startDate,
@@ -69,7 +69,7 @@ function Header() {
 
             <div className="flex">
               <button
-              onclick={resetInput}
+              onClick={resetInput}
                className="flex-grow text-gray-500">Cancel</button>
               <button className="flex-grow text-red-400">Search</button>
             </div>

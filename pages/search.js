@@ -1,7 +1,9 @@
+import Header from "../components/Header";
+
 const search = () => {
     return (
         <div>
-            search
+            <Header />
         </div>
     );
 };
