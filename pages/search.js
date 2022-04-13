@@ -5,12 +5,10 @@ import { format } from "date-fns";
 import InfoCard from "../components/InfoCard";
 const Search = ({ searchResult }) => {
     const router = useRouter();
-    console.log(searchResult);
     const { location, startDate, endDate, noOfGuests } = router.query
     const formattedStartDate = format(new Date(startDate), "dd MM yyyy");
     const formattedEndDate = format(new Date(endDate), "dd MM yyyy");
     const range = `${formattedStartDate} - ${formattedEndDate}`;
-
     return (
         <div>
             <Header placeholder={`${location} | ${range} | ${noOfGuests}`} />
