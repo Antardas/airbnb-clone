@@ -2,13 +2,15 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useRouter } from "next/router";
 import { format } from "date-fns";
-const Search = () => {
+import InfoCard from "../components/InfoCard";
+const Search = ({ searchResult }) => {
     const router = useRouter();
-
+    console.log(searchResult);
     const { location, startDate, endDate, noOfGuests } = router.query
     const formattedStartDate = format(new Date(startDate), "dd MM yyyy");
     const formattedEndDate = format(new Date(endDate), "dd MM yyyy");
-    const range = `${formattedStartDate} - ${formattedEndDate}`
+    const range = `${formattedStartDate} - ${formattedEndDate}`;
+
     return (
         <div>
             <Header placeholder={`${location} | ${range} | ${noOfGuests}`} />
@@ -25,7 +27,15 @@ const Search = () => {
                         <p className='button'>More Filters</p>
 
                     </div>
+                    {
+                        searchResult.length ? (
+                            searchResult.map((result, index) => (
+                                <InfoCard key={index} data={result} />
+                            ))
+                        ) : null
+                    }
                 </section>
+
             </main>
             <Footer />
         </div>
