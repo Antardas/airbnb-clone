@@ -9,7 +9,6 @@ import SmallCard from '../components/SmallCard'
 import styles from '../styles/Home.module.css'
 
 export default function Home({ exploreData, cardsData }) {
-  console.log(exploreData)
   return (
     <div>
       <Header />
@@ -39,15 +38,15 @@ export default function Home({ exploreData, cardsData }) {
 
         <div>
           <LargeCard
-           title="The Greatest Outdoors"
-           img='https://links.papareact.com/4cj'
-           description="Wishlist curated by Airbnb."
-           buttonText='Get Inspired'
-           />
+            title="The Greatest Outdoors"
+            img='https://links.papareact.com/4cj'
+            description="Wishlist curated by Airbnb."
+            buttonText='Get Inspired'
+          />
 
         </div>
       </main>
-      <Footer/>
+      <Footer />
     </div>
   )
 }
