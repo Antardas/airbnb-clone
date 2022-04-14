@@ -1,6 +1,8 @@
 import { Router } from 'next/router';
 import '../styles/globals.css'
 import ProgressBar from "@badrap/bar-of-progress";
+import 'mapbox-gl/dist/mapbox-gl.css';
+
 const progress = new ProgressBar({
   size: 4,
   color: "#e9385b",

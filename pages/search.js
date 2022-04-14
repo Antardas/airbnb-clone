@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import { useRouter } from "next/router";
 import { format } from "date-fns";
 import InfoCard from "../components/InfoCard";
+import SideMap from "../components/SideMap";
 const Search = ({ searchResult }) => {
     const router = useRouter();
     const { location, startDate, endDate, noOfGuests } = router.query
@@ -33,7 +34,9 @@ const Search = ({ searchResult }) => {
                         ) : null
                     }
                 </section>
-
+                <section className='hidden lg:inline-flex md:max-width[400px]'>
+                    <SideMap/>
+                </section>
             </main>
             <Footer />
         </div>
