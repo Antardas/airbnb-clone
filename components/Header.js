@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { SearchIcon, GlobeAltIcon, UserCircleIcon, MenuIcon, UsersIcon } from '@heroicons/react/solid'
 import { useState } from 'react'
-import { DateRangePicker } from 'react-date-range';
+import { DateRangePicker, DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { useRouter } from 'next/router';
@@ -68,12 +68,30 @@ function Header({ placeholder }) {
       {
         searchInput && (
           <div className='flex flex-col col-span-3 mx-auto'>
-            <DateRangePicker
-              ranges={[selectionRange]}
-              minDate={new Date()}
-              rangeColors={['#FD5B61']}
-              onChange={handleSelect}
-            />
+            {/* Calender - Dater Ranger Picker */}
+            <div className=''>
+              {/* Big Calender */}
+              <div className='hidden sm:block'>
+              <DateRangePicker
+                ranges={[selectionRange]}
+                minDate={new Date()}
+                rangeColors={['#FD5B61']}
+                onChange={handleSelect}
+              />
+              </div>
+
+              {/* Small Calender */}
+              <div className='sm:hidden'>
+              <DateRange
+                ranges={[selectionRange]}
+                minDate={new Date()}
+                rangeColors={['#FD5B61']}
+                onChange={handleSelect}
+                
+              />
+              </div>
+            </div>
+
             <div className='flex items-center border-b mb-4'>
               <h2 className='text-2xl flex-grow font-semibold'>Number of Guests</h2>
               <UsersIcon className='h-5' />
