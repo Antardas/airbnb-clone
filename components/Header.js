@@ -1,25 +1,39 @@
 import Image from 'next/image'
 import { SearchIcon, GlobeAltIcon, UserCircleIcon, MenuIcon, UsersIcon } from '@heroicons/react/solid'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { DateRangePicker, DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { useRouter } from 'next/router';
+import SmallMenu from './SmallMenu';
+import { MenuContext } from '../pages/_app';
 
 function Header({ placeholder }) {
+  // Initialize all variables & State
   const [searchInput, setSearchInput] = useState('');
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [noOfGuests, setNoOfGuests] = useState(1);
-  const router = useRouter()
+  const router = useRouter();
+
+//  Context-- Menu
+const {showMenu, setShowMenu} = useContext(MenuContext);
+
+  // Function Area *********
+
+
+  // Set date range 
   const handleSelect = (ranges) => {
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
   }
+
+  // Reset input Field State
   const resetInput = () => {
     setSearchInput('');
 
   }
+  // navigate search Page
   const search = () => {
     router.push({
       pathname: "/search",
@@ -31,12 +45,13 @@ function Header({ placeholder }) {
       }
     })
   }
+
+  // Date Range Selection 
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
     key: 'selection'
   }
-
   return (
     <header className='sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-5'>
 
@@ -55,39 +70,55 @@ function Header({ placeholder }) {
         <SearchIcon className='hidden lg:inline-flex  h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer mx-auto md:mx-2' />
       </div>
 
-      {/* Right */}
+      {/* Right -> Menu Icon */}
+
       <div className='flex space-x-4 items-center justify-end text-gray-500'>
+
         <p className='hidden md:inline cursor-pointer'>Become a host</p>
         <GlobeAltIcon className="h-6" />
-        <div className='flex items-center space-x-2 border-2 p-2 rounded-full'>
+
+        <div
+          onClick={() => setShowMenu(!showMenu)}
+          className='flex items-center space-x-2 border-2 p-2 rounded-full hover:shadow-lg' >
           <MenuIcon className='h-6 cursor-pointer' />
           <UserCircleIcon className='h-6 cursor-pointer' />
         </div>
+
       </div>
+
+      {showMenu &&
+        (<div className='flex absolute top-20 md:right-6 shadow-2xl popup'>
+          <SmallMenu />
+        </div>)}
+
+
+
+
+
       {
         searchInput && (
-          <div className='flex flex-col col-span-3 mx-auto'>
+          <div className='flex flex-col col-span-3 relative mx-auto'>
             {/* Calender - Dater Ranger Picker */}
             <div className=''>
               {/* Big Calender */}
               <div className='hidden sm:block'>
-              <DateRangePicker
-                ranges={[selectionRange]}
-                minDate={new Date()}
-                rangeColors={['#FD5B61']}
-                onChange={handleSelect}
-              />
+                <DateRangePicker
+                  ranges={[selectionRange]}
+                  minDate={new Date()}
+                  rangeColors={['#FD5B61']}
+                  onChange={handleSelect}
+                />
               </div>
 
               {/* Small Calender */}
               <div className='sm:hidden'>
-              <DateRange
-                ranges={[selectionRange]}
-                minDate={new Date()}
-                rangeColors={['#FD5B61']}
-                onChange={handleSelect}
-                
-              />
+                <DateRange
+                  ranges={[selectionRange]}
+                  minDate={new Date()}
+                  rangeColors={['#FD5B61']}
+                  onChange={handleSelect}
+
+                />
               </div>
             </div>
 
@@ -103,6 +134,9 @@ function Header({ placeholder }) {
                 className="flex-grow text-gray-500">Cancel</button>
               <button onClick={search} className="flex-grow text-red-400">Search</button>
             </div>
+
+
+
           </div>
         )
       }
@@ -111,3 +145,5 @@ function Header({ placeholder }) {
 }
 
 export default Header
+
+

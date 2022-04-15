@@ -6,9 +6,12 @@ import Header from '../components/Header'
 import LargeCard from '../components/LargeCard'
 import MediumCard from '../components/MediumCard'
 import SmallCard from '../components/SmallCard'
-import styles from '../styles/Home.module.css'
-
+import { useOutsideClick } from '../Hooks/useOutsideClick'
+import { MenuContext } from './_app'
+import { useContext, useRef, useEffect } from 'react'
+import ExistUser from '../components/ExistUser'
 export default function Home({ exploreData, cardsData }) {
+
   return (
     <div>
       <Header />
@@ -42,6 +45,7 @@ export default function Home({ exploreData, cardsData }) {
             img='https://links.papareact.com/4cj'
             description="Wishlist curated by Airbnb."
             buttonText='Get Inspired'
+
           />
 
         </div>
