@@ -5,7 +5,7 @@
 // export default async function handler(req, res) {
 //   const testCollectionSchema = new Schema({}, { strict: false })
 //   const TestCollection = mongoose.model('test_collection', testCollectionSchema)
-//   mongoose.connect('mongodb+srv://Qua-ly-val-001:Qua-ly-val-001@cluster0.ubk0h.mongodb.net/airbnb-clone').then(async () => {
+//   mongoose.connect('').then(async () => {
 
 //     let body = [
 //       {
