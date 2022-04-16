@@ -1,9 +1,10 @@
 import { HeartIcon } from "@heroicons/react/outline";
 import { StarIcon } from '@heroicons/react/solid'
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const InfoCard = ({ data: { img, location, title, description, star, price, total } }) => {
-    console.log(img)
+   const router = useRouter();
     return (
         <div className='flex py-7 px-2 border-b hover:opacity-80 hover:shadow-lg first:border-t transition duration-200 ease-out' >
             {/* Left Side - Image */}
@@ -14,11 +15,13 @@ const InfoCard = ({ data: { img, location, title, description, star, price, tota
             {/* Right - Content */}
 
             <div className='flex flex-col flex-grow pl-5' >
-                <div className='flex justify-between' >
+                <div
+                onClick={() => router.push('/room')}
+                className='flex justify-between cursor-pointer'  >
                     <p>{location}</p>
                     <HeartIcon className='h-7 cursor-pointer' />
                 </div>
-                <h4 className='text-xl'>{title}</h4>
+                <h4 className='text-x cursor-pointer' onClick={() => router.push('/room')}>{title}</h4>
                 <div className='border-b w-10 pt-2' > </div>
                 <p className="pt-2 text-sm text-gray-500 flex-grow">{description}</p>
                 <div className='flex justify-between items-end pt-5'>

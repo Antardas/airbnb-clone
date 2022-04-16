@@ -51,9 +51,9 @@ const TipCalculator = () => {
             <span>{formattedEndDate}</span>
           </div>
         </div>
-        <div className="absolute">
+        <div className="absolute z-50 left-5">
           {showDatepicker && (
-            <DateRange
+            <DateRange className=""
               ranges={[selectionRange]}
               minDate={new Date()}
               rangeColors={['#FD5B61']}
